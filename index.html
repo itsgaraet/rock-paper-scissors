@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+
+<script>
+    function computerPlay() {
+        let data=Math.round(Math.random()*2);
+        switch(data) {
+            case 0:
+            return 'rock';
+            break;
+            case 1:
+            return 'paper';
+            break;
+            case 2:
+            return 'scissors';
+        }
+    }
+
+    function playRound(userSelection,computerSelection) {
+        switch(userSelection.toLowerCase()) {
+            case 'rock':
+            switch(computerSelection) {
+                case 'rock':
+                console.log("It's a tie.");
+                return 0;
+                break;
+                case 'paper':
+                console.log("You loose! Paper beats rock.");
+                return -1;
+                break;
+                case 'scissors':
+                console.log("You win! Rock wins over scissors.");
+                return 1;
+            }
+            break;
+            case 'paper':
+            switch(computerSelection) {
+                case 'rock':
+                console.log("You win! Paper beats rock.");
+                return 1;
+                break;
+                case 'paper':
+                console.log("It's a tie.");
+                return 0;
+                break;
+                case 'scissors':
+                console.log("You loose! Scissors cuts paper.");
+                return -1;
+            }
+            break;
+            case 'scissors':
+            switch(computerSelection) {
+                case 'rock':
+                console.log("You loose! Rock beats scissors.");
+                return -1;
+                break;
+                case 'paper':
+                console.log("You win! Scissors cuts paper.");
+                return 1;
+                break;
+                case 'scissors':
+                console.log("It's a tie.");
+                return 0;
+            }
+            break;
+            default:
+            console.log('The option selected is invalid');
+            return 0;
+        }
+    }
+
+    function game() {
+        let i, score=0, roundScore;
+        console.log('User vs Computer');
+        for(i=1;i<=5;i++) {
+            let userSelection=prompt('Select rock paper or scissors');
+            let computerSelection=computerPlay();
+            let currentRound=playRound(userSelection,computerSelection);
+            score+=currentRound;
+            switch (currentRound) {
+                case 1:
+                roundScore = '1 0';
+                break;
+                case 0:
+                roundScore = '0 0';
+                break;
+                case -1:
+                roundScore = '0 1';
+            }
+            console.log(roundScore);
+        }
+
+        if (score > 0) {
+            console.log('You win the whole game.');
+        } else if (score < 0) {
+            console.log('You loose the whole game.');
+        } else {
+            console.log("There is no winner.");
+        }
+    }
+
+
+
+</script>
+</body>
+</html>
